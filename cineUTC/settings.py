@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-v@#)q%ic9v=8=79ez4ofq7g0nu#odx%p5izoh^h^@e^$%fia$k
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '').split(',')
+ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', 'cineutc-niva.onrender.com').split(',')
 
 # Application definition
 

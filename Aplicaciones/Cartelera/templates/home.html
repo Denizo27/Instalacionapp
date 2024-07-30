@@ -1,0 +1,70 @@
+{% extends "./plantilla.html" %}
+{% load static %}
+{% block body %}
+
+<style>
+  .carousel-item img,
+  .carousel-item video {
+    max-height: 650px; /* Ajusta este valor según tus necesidades */
+    object-fit: cover; /* Esto mantiene la proporción de la imagen o video */
+    width: 100%;
+  }
+</style>
+</head>
+<body>
+
+<div id="carouselExampleIndicators" class="carousel slide">
+<div class="carousel-indicators">
+  <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+  <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+  <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+</div>
+<div class="carousel-inner">
+  <div class="carousel-item active">
+    <video class="d-block w-100" controls>
+      <source src="https://cdn.pixabay.com/video/2022/10/14/134796-760690958_large.mp4" type="video/mp4">
+      Tu navegador no soporta la etiqueta de video.
+    </video>
+  </div>
+  <div class="carousel-item">
+    <img src="{% static 'img/cine.jpg' %}" class="d-block w-100" alt="...">
+  </div>
+  <div class="carousel-item">
+    <img src="{% static 'img/portada.png' %}" class="d-block w-100" alt="...">
+  </div>
+</div>
+<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+  <span class="visually-hidden">Previous</span>
+</button>
+<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+  <span class="visually-hidden">Next</span>
+</button>
+</div>
+
+<div class="row" style="background-color: black; color:white">
+  <div class="col-6">
+    <br>
+    <h1>MISIÓN</h1>
+
+    <p>Proveer una experiencia cinematográfica excepcional y accesible,
+     ofreciendo una selección diversa de películas de alta calidad 
+     en un ambiente cómodo y acogedor. Nos comprometemos a ser un espacio
+      donde las personas puedan disfrutar del arte del cine, fomentar la cultura 
+      y el entretenimiento, y crear recuerdos inolvidables para nuestros clientes. </p>
+    </div>
+    <div class="col-6">
+      <br>
+      <h1>VISIÓN</h1>
+      <p>Ser el cine preferido en nuestra comunidad y un referente en la industria del 
+        entretenimiento, reconocido por nuestra excelencia en servicio, innovación tecnológica,
+         y programación diversa. Aspiramos a ser un lugar donde el cine trascienda la pantalla, 
+         inspirando, educando y uniendo a las personas a través de historias visuales que reflejan 
+         la diversidad y riqueza de la experiencia humana. </p>
+      </div>
+</div>
+{% endblock %}
+
+
+

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Google Charts Example</title>
+    <!-- Carga la biblioteca de Google Charts -->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      // Carga la versión actual de Google Charts con el paquete 'corechart'
+      google.charts.load('current', {'packages':['corechart']});
+      // Establece una función de devolución de llamada para que se ejecute cuando la API de Google Charts esté cargada
+      google.charts.setOnLoadCallback(drawChart);
+
+      // Función que dibuja el gráfico
+      function drawChart() {
+        // Crea una tabla de datos para el gráfico
+        var data = google.visualization.arrayToDataTable([
+          ['Year', 'Sales', 'Expenses'], // Encabezados de las columnas
+          ['2013',  1000,      400], // Datos del año 2013
+          ['2014',  1170,      460], // Datos del año 2014
+          ['2015',  660,       1120], // Datos del año 2015
+          ['2016',  1030,      540]  // Datos del año 2016
+        ]);
+
+        // Opciones de configuración del gráfico
+        var options = {
+          title: 'Company Performance', // Título del gráfico
+          curveType: 'function', // Tipo de curva para las líneas del gráfico
+          legend: { position: 'bottom' } // Posición de la leyenda
+        };
+
+        // Crea el gráfico de líneas y lo dibuja en el div con id 'curve_chart'
+        var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+        
+        // Dibuja el gráfico con los datos y las opciones especificadas
+        chart.draw(data, options);
+      }
+    </script>
+  </head>
+  <body>
+    <!-- Div donde se renderizará el gráfico -->
+    <div id="curve_chart" style="width: 900px; height: 500px"></div>
+  </body>
+</html>

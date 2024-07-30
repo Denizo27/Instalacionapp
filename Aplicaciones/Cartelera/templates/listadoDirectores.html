@@ -1,0 +1,109 @@
+{% extends "./plantilla.html" %}
+
+{% block body %}
+<br>
+<div class="card">
+    <div class="card-title text-center"></div>
+    <h3><b>Listado de Directores</b></h3>
+    <br>
+    <div class="text-end">
+        <a href="{% url 'nuevoDirector' %}" class="btn btn-success">Agregar Director</a>
+    </div>
+    <table class="table table-bordered table-striped table-hover" id="tbl-directores">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>DNI</th>
+                <th>APELLIDO</th>
+                <th>NOMBRE</th>
+                <th>ESTADO</th>
+                <th>FOTO</th>  <!-- Nueva columna para la foto -->
+                <th>ACCIONES</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for directorTemporal in directores %}
+            <tr>
+                <td>{{ directorTemporal.id }}</td>
+                <td>{{ directorTemporal.dni }}</td>
+                <td>{{ directorTemporal.apellido }}</td>
+                <td>{{ directorTemporal.nombre }}</td>
+                <td>{{ directorTemporal.estado|yesno:"Activo,Inactivo" }}</td>
+                <td>
+                    {% if directorTemporal.foto %}
+                        <a href="{{ directorTemporal.foto.url }}" target="_blank">
+                            <img src="{{ directorTemporal.foto.url }}" alt="Foto del Director" height="100px" width="100px">
+                        </a>
+                    {% else %}
+                        No Disponible
+                    {% endif %}
+                </td>
+                <td>
+                    <a href="{% url 'editarDirector' directorTemporal.id %}" class="btn btn-primary">Editar</a>
+                    <a href="{% url 'eliminarDirector' directorTemporal.id %}" class="btn btn-danger"
+                       onclick="return confirm('¿Estás seguro de eliminar?')">Eliminar</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<!-- Incluye jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- Incluye Bootstrap JavaScript (popper.js y bootstrap.min.js) -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+<!-- Incluye el script de Google Charts -->
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+<!-- Inicializa DataTable -->
+<script>
+    $(document).ready(function() {
+        $('#tbl-directores').DataTable({
+            "paging": true,
+            "searching": true,
+            "ordering": true
+        });
+    });
+</script>
+
+<!-- Código para el gráfico de Google Charts -->
+<script type="text/javascript">
+    // Carga la biblioteca de Google Charts con el paquete 'corechart'
+    google.charts.load('current', {'packages':['corechart']});
+    // Establece una función de devolución de llamada para que se ejecute cuando la API de Google Charts esté cargada
+    google.charts.setOnLoadCallback(drawChart);
+
+    function drawChart() {
+        // Datos pasados desde la vista
+        var rawData = {{ chart_data|safe }};
+        console.log(rawData);  // Verifica los datos en la consola del navegador
+        
+        // Convierte los datos en un formato que Google Charts pueda usar
+        var data = google.visualization.arrayToDataTable(rawData);
+
+        // Opciones del gráfico
+        var options = {
+            title: 'Distribución del Estado de los Directores',
+            is3D: true,
+            pieSliceText: 'label'
+        };
+
+        // Crea el gráfico de tipo PieChart y lo dibuja en el contenedor 'piechart'
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+        chart.draw(data, options);
+    }
+</script>
+
+<!-- Contenedor para el gráfico -->
+<div id="piechart" style="width: 900px; height: 500px; margin-top: 20px;"></div>
+
+<style>
+    .dt-input {
+        border: 3px solid rgb(0, 162, 255);
+    }
+</style>
+{% endblock %}

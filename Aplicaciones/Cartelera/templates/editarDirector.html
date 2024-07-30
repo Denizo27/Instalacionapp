@@ -1,0 +1,30 @@
+{% extends "./plantilla.html" %}
+{%  block body %}
+<h1>Editar Genero</h1>
+<div>
+    <div class="row">
+        <div class="col-md-12">
+        <form action="{% url 'procesarActualizacionDirector'%}" method="post"> 
+            {% csrf_token %}
+            <input type="hidden" name="id" value="{{directorEditar.id}}">
+            <label for=""><b>DNI</b></label>
+            <input type="text" name="dni" class="form-control" value="{{directorEditar.dni}}"id="dni" placeholder="Ingrese el dni del director"> 
+            <br>
+            <label for=""><b>NOMBRE</b></label>
+            <input type="text" name="nombre" class="form-control" value="{{directorEditar.nombre}}"id="nombre" placeholder="Ingrese el nombre del genero"> 
+            <br>
+            <label for=""><b>APELLIDO</b></label>
+            <input type="text" name="apellido" class="form-control" value="{{directorEditar.apellido}"id="apellido" placeholder="Ingrese el aplellido del director"> 
+            <br>
+            <label for=""><b>ESTADO</b></label>
+            <input type="text" name="estado" id="estado" value="{{directorEditar.estado}}">
+            <br>
+                <button  type="submit" class="btn btn-warning">
+                    Actualizar</button>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="{% url 'listadoDirectores' %}">Cancelar</a>
+        </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

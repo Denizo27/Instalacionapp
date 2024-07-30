@@ -1,0 +1,37 @@
+{% extends "./plantilla.html" %}
+{% block body %}
+<div>
+    <div class="row">
+        <div class="col-md-12">
+        <form action="{% url 'guardarDirector' %}" enctype="multipart/form-data" method="post"> 
+            {% csrf_token %}
+            
+            <label for="dni"><b>DNI</b></label>
+            <input type="text" name="dni" id="dni" class="form-control" placeholder="Ingrese el DNI">
+            <br>
+            
+            <label for="apellido"><b>Apellido</b></label>
+            <input type="text" name="apellido" id="apellido" class="form-control" placeholder="Ingrese el apellido">
+            <br>
+            
+            <label for="nombre"><b>Nombre</b></label>
+            <input type="text" name="nombre" id="nombre" class="form-control" placeholder="Ingrese el nombre">
+            <br>
+            
+            <label for="estado"><b>Estado</b></label>
+            <input type="checkbox" name="estado" id="estado" value="1" class="form-check-input">
+            <label for="estado" class="form-check-label">Activo</label>
+            <br>
+            
+            <label for="foto"><b>Fotografía:</b></label>
+            <input type="file" name="foto" id="foto" accept="image/*" class="form-control">
+            <br>
+            
+            <button type="submit" class="btn btn-primary">Guardar</button>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="{% url 'listadoDirectores' %}" class="btn btn-danger">Cancelar</a>
+        </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends "./plantilla.html" %}
+{% block body %}
+<br>
+<div class="card">
+    <div class="card-title text-center"></div>
+    <h3><b>Listado de Peliculas</b></h3>
+    <br>
+    <table class="table table-bordered table-striped table-hover">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>TITULO</th>
+                <th>DURACION</th>
+                <th>SINOPSIS</th>
+                <th>DURACION</th>
+                <th>GENERO</th>
+                <th>DIRECTOR</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tbody>
+                {% for peliculaTemporal in pelicula %}
+                <tr>
+                 <td>{{peliculaTemporal.id}}</td>
+                 <td>{{peliculaTemporal.titulo}}</td>
+                 <td>{{peliculaTemporal.duracion}}</td>
+                 <td>{{peliculaTemporal.sinopsis}}</td>
+                 <td>{{peliculaTemporal.genero}}</td>
+                 <td>{{peliculaTemporal.director}}</td>
+             </tr>
+             {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
